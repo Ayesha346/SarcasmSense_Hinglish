@@ -291,4 +291,27 @@ plt.show()
 
 # Download graph
 files.download("final_comparison_bar.png")
+# 🔹 Function to predict sarcasm using ML model
 
+def predict_sarcasm_ml(text):
+    # Preprocess
+    text = text.lower()
+    
+    # Transform using TF-IDF
+    vectorized_text = vectorizer.transform([text])
+    
+    # Predict
+    prediction = best_model.predict(vectorized_text)[0]
+    
+    # Output
+    if prediction == 1:
+        return "Sarcastic 😏"
+    else:
+        return "Not Sarcastic 🙂"
+
+
+# 🔹 Test with user input
+input_text = input("Enter Hinglish text: ")
+result = predict_sarcasm_ml(input_text)
+
+print("\nPrediction:", result)
